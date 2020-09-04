@@ -12,6 +12,8 @@ const int comprimento = 640;
 const int altura = 480;
 //  Variavel do loop do jogo
 bool loop = true;
+//  Variavel que armazena a pontuacao
+int pontuacao = 0;
 
 //  Dados do personagem
 const int personagem_comprimento = 100;
@@ -113,6 +115,9 @@ int main(int argc, char *agrs[])
     SDL_DestroyWindow(janela);
     SDL_Quit();
 
+    //  Print da pontuacao do usuario
+    printf("Score: %d \n", pontuacao);
+
     return 0;
 }
 
@@ -142,6 +147,9 @@ void grafico(void)
 
     //  Desenhando personagem
     desenhar_personagem();
+
+    //  Aumentando a pontuacao
+    pontuacao++;
 
     //  Atualizando tela
     SDL_RenderPresent(tela);
