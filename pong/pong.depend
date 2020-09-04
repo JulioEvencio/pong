@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1599258237 source:/home/evencio_20/julio/programacao/c/github/pong/pong/main.c
+	<stdio.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+

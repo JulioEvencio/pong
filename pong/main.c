@@ -22,6 +22,14 @@ bool personagem_movimento_esquerda = false;
 int personagem_x = 50;
 int personagem_y = 420;
 
+//  Dados do alvo
+const int alvo_comprimento = 30;
+const int alvo_altura = 30;
+int alvo_velocidade_x = 1;
+int alvo_velocidade_y = 1;
+int alvo_x = 50;
+int alvo_y = 50;
+
 //  Funcoes
 void logica(void);
 void grafico(void);
@@ -29,6 +37,8 @@ void desenhar_personagem(void);
 void movimentar_personagem(void);
 void verificar_qual_tecla_pressionada(void);
 void verificar_qual_tecla_solta(void);
+void desenhar_alvo(void);
+void movimentar_alvo(void);
 
 //  Variaveis SDL
 SDL_Window *janela = NULL;
@@ -106,6 +116,9 @@ int main(int argc, char *agrs[])
 
 void logica(void)
 {
+    //  Movimento do alvo
+    movimentar_alvo();
+
     //  Movimento do personagem
     movimentar_personagem();
 }
@@ -115,6 +128,9 @@ void grafico(void)
     //  Definindo fundo branco para a tela
     SDL_SetRenderDrawColor(tela, 255, 255, 255, 255);
     SDL_RenderClear(tela);
+
+    //  Desenhando alvo
+    desenhar_alvo();
 
     //  Desenhando personagem
     desenhar_personagem();
@@ -175,5 +191,31 @@ void verificar_qual_tecla_solta(void)
     if(evento.key.keysym.sym == SDLK_LEFT)
     {
         personagem_movimento_esquerda = false;
+    }
+}
+
+void desenhar_alvo(void)
+{
+    SDL_SetRenderDrawColor(tela, 0, 0, 255, 255);
+    SDL_Rect alvo = {alvo_x, alvo_y, alvo_comprimento, alvo_altura};
+    SDL_RenderFillRect(tela, &alvo);
+}
+
+void movimentar_alvo(void)
+{
+    alvo_x += alvo_velocidade_x;
+    alvo_y += alvo_velocidade_y;
+
+    //  Verificando se o alvo saiu do eixo x da tela
+    if(alvo_x + alvo_comprimento > comprimento || alvo_x < 0)
+    {
+        //  Invertendo velocidade no eixo x
+        alvo_velocidade_x = -alvo_velocidade_x;
+    }
+    //  Verificando se o alvo saiu do eixo y da tela
+    if(alvo_y + alvo_altura > altura || alvo_y < 0)
+    {
+        //  Invertendo velocidade no eixo y
+        alvo_velocidade_y = -alvo_velocidade_y;
     }
 }
