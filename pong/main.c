@@ -39,6 +39,7 @@ void verificar_qual_tecla_pressionada(void);
 void verificar_qual_tecla_solta(void);
 void desenhar_alvo(void);
 void movimentar_alvo(void);
+void verificar_colisao(void);
 
 //  Variaveis SDL
 SDL_Window *janela = NULL;
@@ -121,6 +122,9 @@ void logica(void)
 
     //  Movimento do personagem
     movimentar_personagem();
+
+    //  Verificando colisao do alvo no personagem
+    verificar_colisao();
 }
 
 void grafico(void)
@@ -217,5 +221,17 @@ void movimentar_alvo(void)
     {
         //  Invertendo velocidade no eixo y
         alvo_velocidade_y = -alvo_velocidade_y;
+    }
+}
+
+void verificar_colisao(void)
+{
+    if(personagem_y < alvo_y + alvo_altura)
+    {
+        if(alvo_x > personagem_x && alvo_x + alvo_comprimento < personagem_x + personagem_comprimento)
+        {
+            //  Invertendo velocidade do alvo no eixo y
+            alvo_velocidade_y = -alvo_velocidade_y;
+        }
     }
 }
