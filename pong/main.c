@@ -40,6 +40,7 @@ void verificar_qual_tecla_solta(void);
 void desenhar_alvo(void);
 void movimentar_alvo(void);
 void verificar_colisao(void);
+void fim_de_jogo(void);
 
 //  Variaveis SDL
 SDL_Window *janela = NULL;
@@ -125,6 +126,9 @@ void logica(void)
 
     //  Verificando colisao do alvo no personagem
     verificar_colisao();
+
+    //  Verificando o fim de jogo
+    fim_de_jogo();
 }
 
 void grafico(void)
@@ -233,5 +237,14 @@ void verificar_colisao(void)
             //  Invertendo velocidade do alvo no eixo y
             alvo_velocidade_y = -alvo_velocidade_y;
         }
+    }
+}
+
+void fim_de_jogo(void)
+{
+    if(alvo_y > personagem_y + personagem_altura)
+    {
+        loop = false;
+        printf("Fim de jogo! \n");
     }
 }
