@@ -13,9 +13,19 @@ const int altura = 480;
 //  Variavel do loop do jogo
 bool loop = true;
 
+//  Dados do personagem
+const int personagem_comprimento = 100;
+const int personagem_altura = 30;
+const int personagem_velocidade = 5;
+bool personagem_movimento_direita = false;
+bool personagem_movimento_esquerda = false;
+int personagem_x = 50;
+int personagem_y = 420;
+
 //  Funcoes
 void logica(void);
 void grafico(void);
+void desenhar_personagem(void);
 
 //  Variaveis SDL
 SDL_Window *janela = NULL;
@@ -88,9 +98,20 @@ void logica(void)
 
 void grafico(void)
 {
-    //  Limpando a tela de preto
+    //  Definindo fundo branco para a tela
+    SDL_SetRenderDrawColor(tela, 255, 255, 255, 255);
     SDL_RenderClear(tela);
+
+    //  Desenhando personagem
+    desenhar_personagem();
 
     //  Atualizando tela
     SDL_RenderPresent(tela);
+}
+
+void desenhar_personagem(void)
+{
+    SDL_SetRenderDrawColor(tela, 60, 60, 60, 255);
+    SDL_Rect personagem = {personagem_x, personagem_y, personagem_comprimento, personagem_altura};
+    SDL_RenderFillRect(tela, &personagem);
 }
