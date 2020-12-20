@@ -45,7 +45,7 @@ void definir_personagem(void)
     personagem.esquerda = 0;
     personagem.largura = 100;
     personagem.altura = 30;
-    personagem.velocidade = 1;
+    personagem.velocidade = 8;
 }
 
 //  Funcao que faz o movimento do personagem

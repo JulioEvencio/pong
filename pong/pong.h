@@ -11,7 +11,7 @@
 #define JANELA_ALTURA 400
 #define JANELA_COR 255,255,255
 //  Jogo
-#define JOGO_DELAY 1000/60
+#define JOGO_DELAY 10
 
 /*  Variaveis */
 int loop = 1;
