@@ -30,6 +30,16 @@ int main(int argc, char *args[])
             {
                 loop = 0;
             }
+            //  Verificando se o usuario apertou alguma tecla do teclado
+            if(evento.type == SDL_KEYDOWN)
+            {
+                verificar_tecla_pressionada();
+            }
+            //  Verificando se o usuario soltou alguma tecla do teclado
+            if(evento.type == SDL_KEYUP)
+            {
+                verificar_tecla_solta();
+            }
         }
 
         /*  Logica */

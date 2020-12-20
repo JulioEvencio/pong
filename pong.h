@@ -24,5 +24,8 @@ SDL_Renderer *tela = NULL;
 SDL_Event evento;
 
 /*  Funcoes */
+//  Verificacao de tecla
+void verificar_tecla_pressionada(void);
+void verificar_tecla_solta(void);
 
 #endif // PONG_H_INCLUDED
