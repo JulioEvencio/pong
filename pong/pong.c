@@ -51,11 +51,11 @@ void definir_personagem(void)
 //  Funcao que faz o movimento do personagem
 void movimentar_personagem(void)
 {
-    if(personagem.direita)
+    if(personagem.direita && (personagem.x + personagem.largura) < JANELA_LARGURA)
     {
         personagem.x += personagem.velocidade;
     }
-    if(personagem.esquerda)
+    if(personagem.esquerda && personagem.x > (JANELA_LARGURA - JANELA_LARGURA))
     {
         personagem.x -= personagem.velocidade;
     }
