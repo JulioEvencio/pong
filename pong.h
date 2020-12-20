@@ -16,6 +16,17 @@
 /*  Variaveis */
 int loop = 1;
 
+/*  Structs */
+//  Personagem
+struct tipo_personagem
+{
+    SDL_Rect personagem;
+    int x;
+    int y;
+}
+typedef struct tipo_personagem Personagem;
+Personagem personagem;
+
 /*  Variaveis SDL */
 //  Janela e tela
 SDL_Window *janela = NULL;
