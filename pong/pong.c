@@ -10,10 +10,10 @@ void verificar_tecla_pressionada(void)
     switch(evento.key.keysym.sym)
     {
         case(SDLK_RIGHT):
-            personagem.direita = 1;
+            personagem.direita = VERDADEIRO;
             break;
         case(SDLK_LEFT):
-            personagem.esquerda = 1;
+            personagem.esquerda = VERDADEIRO;
             break;
     }
 }
@@ -24,13 +24,13 @@ void verificar_tecla_solta(void)
     switch(evento.key.keysym.sym)
     {
         case(SDLK_ESCAPE):
-            loop = 0;
+            loop = FALSO;
             break;
         case(SDLK_RIGHT):
-            personagem.direita = 0;
+            personagem.direita = FALSO;
             break;
         case(SDLK_LEFT):
-            personagem.esquerda = 0;
+            personagem.esquerda = FALSO;
             break;
     }
 }
@@ -69,5 +69,21 @@ void resetar_inimigo(void)
     inimigo.y = INIMIGO_Y;
     inimigo.largura = INIMIGO_LARGURA;
     inimigo.altura = INIMIGO_ALTURA;
-    inimigo.velocidade = INIMIGO_VELOCIDADE;
+    inimigo.velocidade_x = INIMIGO_VELOCIDADE_X;
+    inimigo.velocidade_y = INIMIGO_VELOCIDADE_Y;
+}
+
+//  Funcao que faz o movimento do inimigo
+void movimentar_inimigo(void)
+{
+    inimigo.x += inimigo.velocidade_x;
+    inimigo.y += inimigo.velocidade_y;
+    if(inimigo.x < (JANELA_LARGURA - JANELA_LARGURA) || (inimigo.x + inimigo.largura) > JANELA_LARGURA)
+    {
+        inimigo.velocidade_x = -inimigo.velocidade_x;
+    }
+    if(inimigo.y < (JANELA_ALTURA - JANELA_ALTURA) || (inimigo.y + inimigo.altura) > JANELA_ALTURA)
+    {
+        inimigo.velocidade_y = -inimigo.velocidade_y;
+    }
 }

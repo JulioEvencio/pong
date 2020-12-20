@@ -14,13 +14,17 @@ int main(int argc, char *args[])
     //  Iniciando SDl, IMG e TTF
     sdl2_iniciar_SDL2();
 
-    //  Criando janela e tela
+    //  Criando janela
     janela = sdl2_criar_janela(JANELA_NOME, JANELA_LARGURA, JANELA_ALTURA);
+
+    //  Criando tela
     tela = sdl2_criar_tela(janela);
 
-    //  Resetando parametros inicias do personagem e do inimigo antes de iniciar o jogo
-    resetar_personagem();
+    //  Resetando parametros inicias do inimigo
     resetar_inimigo();
+    
+    //  Resetando parametros inicias do personagem
+    resetar_personagem();
 
     //  Loop do jogo
     while(loop)
@@ -32,7 +36,7 @@ int main(int argc, char *args[])
             //  Usuario clicou no X da janela
             if(evento.type == SDL_QUIT)
             {
-                loop = 0;
+                loop = FALSO;
             }
             //  Verificando se o usuario apertou alguma tecla do teclado
             if(evento.type == SDL_KEYDOWN)
@@ -47,6 +51,9 @@ int main(int argc, char *args[])
         }
 
         /*  Logica */
+        //  Movimentando o inimigo
+        movimentar_inimigo();
+
         //  Movimentando o personagem
         movimentar_personagem();
 
@@ -54,11 +61,11 @@ int main(int argc, char *args[])
         //  Definindo cor da tela
         sdl2_definir_cor_tela(tela, JANELA_COR);
 
-        //  Desenhando um retangulo que representa o personagem
-        sdl2_desenhar_retangulo(tela, personagem.retangulo, personagem.x, personagem.y, personagem.largura, personagem.altura, AZUL);
+        //  Desenhando o inimigo
+        sdl2_desenhar_retangulo(tela, inimigo.retangulo, inimigo.x, inimigo.y, inimigo.largura, inimigo.altura, INIMIGO_COR);
         
-        //  Desenhando um retangulo que representa o inimigo
-        sdl2_desenhar_retangulo(tela, inimigo.retangulo, inimigo.x, inimigo.y, inimigo.largura, inimigo.altura, VERMELHO);
+        //  Desenhando o personagem
+        sdl2_desenhar_retangulo(tela, personagem.retangulo, personagem.x, personagem.y, personagem.largura, personagem.altura, PERSONAGEM_COR);
 
         //  Atualizando tela
         sdl2_atualizar_tela(tela);

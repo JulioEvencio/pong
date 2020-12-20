@@ -12,6 +12,8 @@
 #define JANELA_COR 255,255,255
 //  Jogo
 #define JOGO_DELAY 10
+#define VERDADEIRO 1
+#define FALSO 0
 //  Personagem
 #define PERSONAGEM_X 300
 #define PERSONAGEM_Y 350
@@ -20,15 +22,18 @@
 #define PERSONAGEM_LARGURA 100
 #define PERSONAGEM_ALTURA 30
 #define PERSONAGEM_VELOCIDADE 8
+#define PERSONAGEM_COR AZUL
 //  Inimigo
 #define INIMIGO_X 50
 #define INIMIGO_Y 50
 #define INIMIGO_LARGURA 30
 #define INIMIGO_ALTURA 30
-#define INIMIGO_VELOCIDADE 4
+#define INIMIGO_VELOCIDADE_X 2
+#define INIMIGO_VELOCIDADE_Y 2
+#define INIMIGO_COR VERMELHO
 
 /*  Variaveis */
-int loop = 1;
+int loop = VERDADEIRO;
 
 /*  Structs */
 //  Personagem
@@ -53,7 +58,8 @@ struct tipo_inimigo
     int y;
     int largura;
     int altura;
-    int velocidade;
+    int velocidade_x;
+    int velocidade_y;
 };
 typedef struct tipo_inimigo Inimigo;
 Inimigo inimigo;
@@ -74,5 +80,6 @@ void resetar_personagem(void);
 void movimentar_personagem(void);
 //  Funcoes do inimigo
 void resetar_inimigo(void);
+void movimentar_inimigo(void);
 
 #endif // PONG_H_INCLUDED
