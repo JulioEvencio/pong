@@ -23,7 +23,8 @@ struct tipo_personagem
     SDL_Rect personagem;
     int x;
     int y;
-}
+    int velocidade;
+};
 typedef struct tipo_personagem Personagem;
 Personagem personagem;
 
