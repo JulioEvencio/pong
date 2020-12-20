@@ -19,7 +19,7 @@ int main(int argc, char *args[])
     tela = sdl2_criar_tela(janela);
 
     //  Definindo parametros inicias do personagem
-    definir_personagem(&personagem);
+    definir_personagem();
 
     //  Loop do jogo
     while(loop)
@@ -46,13 +46,15 @@ int main(int argc, char *args[])
         }
 
         /*  Logica */
+        //  Movimentando o personagem
+        movimentar_personagem();
 
         /*  Graficos */
         //  Definindo cor da tela
         sdl2_definir_cor_tela(tela, JANELA_COR);
 
         //  Desenhando um retangulo que representa o personagem
-        sdl2_desenhar_retangulo(tela, personagem.retangulo, personagem.x, personagem.y, personagem.largura, personagem.altura, PERSONAGEM_COR);
+        sdl2_desenhar_retangulo(tela, personagem.retangulo, personagem.x, personagem.y, personagem.largura, personagem.altura, AZUL);
 
         //  Atualizando tela
         sdl2_atualizar_tela(tela);
