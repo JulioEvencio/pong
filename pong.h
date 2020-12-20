@@ -12,6 +12,11 @@
 #define JANELA_COR 255,255,255
 //  Jogo
 #define JOGO_DELAY 1000/60
+//  Personagem
+#define PERSONAGEM_LARGURA 100
+#define PERSONAGEM_ALTURA 30
+#define PERSONAGEM_VELOCIDADE 1
+#define PERSONAGEM_COR 0,0,255
 
 /*  Variaveis */
 int loop = 1;
@@ -20,7 +25,7 @@ int loop = 1;
 //  Personagem
 struct tipo_personagem
 {
-    SDL_Rect personagem;
+    SDL_Rect retangulo;
     int x;
     int y;
     int largura;
@@ -41,5 +46,7 @@ SDL_Event evento;
 //  Verificacao de tecla
 void verificar_tecla_pressionada(void);
 void verificar_tecla_solta(void);
+//  Funcoes do personagem
+void definir_personagem(Personagem *personagem);
 
 #endif // PONG_H_INCLUDED
