@@ -37,15 +37,15 @@ void verificar_tecla_solta(void)
 
 /*  Funcoes do personagem */
 //  Funcao que define os atributos iniciais do personagem
-void definir_personagem(void)
+void resetar_personagem(void)
 {
-    personagem.x = 350;
-    personagem.y = 350;
-    personagem.direita = 0;
-    personagem.esquerda = 0;
-    personagem.largura = 100;
-    personagem.altura = 30;
-    personagem.velocidade = 8;
+    personagem.x = PERSONAGEM_X;
+    personagem.y = PERSONAGEM_Y;
+    personagem.direita = PERSONAGEM_DIREITA;
+    personagem.esquerda = PERSONAGEM_ESQUERDA;
+    personagem.largura = PERSONAGEM_LARGURA;
+    personagem.altura = PERSONAGEM_ALTURA;
+    personagem.velocidade = PERSONAGEM_VELOCIDADE;
 }
 
 //  Funcao que faz o movimento do personagem

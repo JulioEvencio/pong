@@ -18,8 +18,8 @@ int main(int argc, char *args[])
     janela = sdl2_criar_janela(JANELA_NOME, JANELA_LARGURA, JANELA_ALTURA);
     tela = sdl2_criar_tela(janela);
 
-    //  Definindo parametros inicias do personagem
-    definir_personagem();
+    //  Resetando parametros inicias do personagem antes de iniciar o jogo
+    resetar_personagem();
 
     //  Loop do jogo
     while(loop)
