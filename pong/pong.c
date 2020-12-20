@@ -36,7 +36,7 @@ void verificar_tecla_solta(void)
 }
 
 /*  Funcoes do personagem */
-//  Funcao que define os atributos iniciais do personagem
+//  Funcao que reseta os atributos iniciais do personagem
 void resetar_personagem(void)
 {
     personagem.x = PERSONAGEM_X;
@@ -59,4 +59,15 @@ void movimentar_personagem(void)
     {
         personagem.x -= personagem.velocidade;
     }
+}
+
+/*  Funcoes do inimigo */
+//  Funcao que reseta os atributos iniciais do inimigo
+void resetar_inimigo(void)
+{
+    inimigo.x = INIMIGO_X;
+    inimigo.y = INIMIGO_Y;
+    inimigo.largura = INIMIGO_LARGURA;
+    inimigo.altura = INIMIGO_ALTURA;
+    inimigo.velocidade = INIMIGO_VELOCIDADE;
 }

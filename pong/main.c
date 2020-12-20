@@ -18,8 +18,9 @@ int main(int argc, char *args[])
     janela = sdl2_criar_janela(JANELA_NOME, JANELA_LARGURA, JANELA_ALTURA);
     tela = sdl2_criar_tela(janela);
 
-    //  Resetando parametros inicias do personagem antes de iniciar o jogo
+    //  Resetando parametros inicias do personagem e do inimigo antes de iniciar o jogo
     resetar_personagem();
+    resetar_inimigo();
 
     //  Loop do jogo
     while(loop)
@@ -55,6 +56,9 @@ int main(int argc, char *args[])
 
         //  Desenhando um retangulo que representa o personagem
         sdl2_desenhar_retangulo(tela, personagem.retangulo, personagem.x, personagem.y, personagem.largura, personagem.altura, AZUL);
+        
+        //  Desenhando um retangulo que representa o inimigo
+        sdl2_desenhar_retangulo(tela, inimigo.retangulo, inimigo.x, inimigo.y, inimigo.largura, inimigo.altura, VERMELHO);
 
         //  Atualizando tela
         sdl2_atualizar_tela(tela);
