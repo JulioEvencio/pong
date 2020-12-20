@@ -86,4 +86,32 @@ void movimentar_inimigo(void)
     {
         inimigo.velocidade_y = -inimigo.velocidade_y;
     }
+    //  Verificando se o inimigo colidiu com o personagem
+    if(verificar_colisao(personagem.x, personagem.y, personagem.largura, personagem.altura))
+    {
+        inimigo.velocidade_y = -inimigo.velocidade_y;
+    }
+}
+
+/*  Funcoes do jogo */
+//  Funcao que verifica se o inimigo colidiu com algo
+int verificar_colisao(int x, int y, int largura, int altura)
+{
+    if((inimigo.y + inimigo.altura) < y)
+    {
+        return FALSO;
+    }
+    if(inimigo.y > (y + altura))
+    {
+        return FALSO;
+    }
+    if((inimigo.x + inimigo.largura) < x)
+    {
+        return FALSO;
+    }
+    if(inimigo.x > (x + largura))
+    {
+        return FALSO;
+    }
+    return VERDADEIRO;
 }

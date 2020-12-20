@@ -75,11 +75,16 @@ SDL_Event evento;
 //  Verificacao de tecla
 void verificar_tecla_pressionada(void);
 void verificar_tecla_solta(void);
+
 //  Funcoes do personagem
 void resetar_personagem(void);
 void movimentar_personagem(void);
+
 //  Funcoes do inimigo
 void resetar_inimigo(void);
 void movimentar_inimigo(void);
+int verificar_colisao(int x, int y, int largura, int altura);
+
+//  Funcoes do jogo
 
 #endif // PONG_H_INCLUDED
