@@ -4,6 +4,7 @@
 
 //  Bibliotecas
 #include <stdio.h>
+#include <time.h>
 #include "sdl2/sdl2.h"
 #include "sdl2/sdl2.c"
 #include "pong.h"
@@ -11,6 +12,9 @@
 
 int main(int argc, char *args[])
 {
+    //  Definindo semente para funcao rand
+    srand(time(NULL));
+    
     //  Iniciando SDl, IMG e TTF
     sdl2_iniciar_SDL2();
 
