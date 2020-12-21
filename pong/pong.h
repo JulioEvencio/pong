@@ -31,6 +31,13 @@
 #define INIMIGO_VELOCIDADE_X 2
 #define INIMIGO_VELOCIDADE_Y 2
 #define INIMIGO_COR VERMELHO
+//  Bloco
+#define BLOCO_NUMERO 18
+#define BLOCO_X 4
+#define BLOCO_Y 10
+#define BLOCO_LARGURA 60
+#define BLOCO_ALTURA 20
+#define BLOCO_COR PRETO
 
 /*  Variaveis */
 int loop = VERDADEIRO;
@@ -63,6 +70,18 @@ struct tipo_inimigo
 };
 typedef struct tipo_inimigo Inimigo;
 Inimigo inimigo;
+//  Blocos
+struct tipo_bloco
+{
+    SDL_Rect retangulo;
+    int x;
+    int y;
+    int largura;
+    int altura;
+    int destruido;
+};
+typedef struct tipo_bloco Bloco;
+Bloco bloco[BLOCO_NUMERO];
 
 /*  Variaveis SDL */
 //  Janela e tela
@@ -84,6 +103,9 @@ void movimentar_personagem(void);
 void resetar_inimigo(void);
 void movimentar_inimigo(void);
 int verificar_colisao(int x, int y, int largura, int altura);
+
+//  Funcoes do bloco
+void resetar_bloco(void);
 
 //  Funcoes do jogo
 void verificar_fim_jogo(void);

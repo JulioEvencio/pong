@@ -26,6 +26,9 @@ int main(int argc, char *args[])
     //  Resetando parametros inicias do personagem
     resetar_personagem();
 
+    //  Resetando parametros inicias dos blocos
+    resetar_bloco();
+
     //  Loop do jogo
     while(loop)
     {
@@ -66,6 +69,15 @@ int main(int argc, char *args[])
 
         //  Desenhando o inimigo
         sdl2_desenhar_retangulo(tela, inimigo.retangulo, inimigo.x, inimigo.y, inimigo.largura, inimigo.altura, INIMIGO_COR);
+        
+        //  Desenhando blocos
+        for(int i = 0; i < BLOCO_NUMERO; i++)
+        {
+            if(!bloco[i].destruido)
+            {
+                sdl2_desenhar_retangulo(tela, bloco[i].retangulo, bloco[i].x, bloco[i].y, bloco[i].largura, bloco[i].altura, BLOCO_COR);
+            }
+        }
         
         //  Desenhando o personagem
         sdl2_desenhar_retangulo(tela, personagem.retangulo, personagem.x, personagem.y, personagem.largura, personagem.altura, PERSONAGEM_COR);

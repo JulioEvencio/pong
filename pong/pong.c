@@ -93,6 +93,24 @@ void movimentar_inimigo(void)
     }
 }
 
+/*  Funcoes do bloco */
+void resetar_bloco(void)
+{
+    for(int i = 0, x = BLOCO_X, y = BLOCO_Y; i < BLOCO_NUMERO; i++, x += 66)
+    {
+        if(x > 560)
+        {
+            x = BLOCO_X;
+            y += 23;
+        }
+        bloco[i].x = x;
+        bloco[i].y = y;
+        bloco[i].largura = BLOCO_LARGURA;
+        bloco[i].altura = BLOCO_ALTURA;
+        bloco[i].destruido = FALSO;
+    }
+}
+
 /*  Funcoes do jogo */
 //  Funcao que verifica se o inimigo colidiu com algo
 int verificar_colisao(int x, int y, int largura, int altura)
