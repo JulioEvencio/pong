@@ -57,6 +57,9 @@ int main(int argc, char *args[])
         //  Movimentando o personagem
         movimentar_personagem();
 
+        //  Verificando se o usuario perdeu
+        verificar_fim_jogo();
+
         /*  Graficos */
         //  Definindo cor da tela
         sdl2_definir_cor_tela(tela, JANELA_COR);

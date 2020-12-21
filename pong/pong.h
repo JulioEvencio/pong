@@ -86,5 +86,6 @@ void movimentar_inimigo(void);
 int verificar_colisao(int x, int y, int largura, int altura);
 
 //  Funcoes do jogo
+void verificar_fim_jogo(void);
 
 #endif // PONG_H_INCLUDED

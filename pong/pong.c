@@ -115,3 +115,12 @@ int verificar_colisao(int x, int y, int largura, int altura)
     }
     return VERDADEIRO;
 }
+
+//  Funcao que verifica se o usuario perdeu
+void verificar_fim_jogo(void)
+{
+    if((inimigo.y + inimigo.altura) > JANELA_ALTURA)
+    {
+        loop = FALSO;
+    }
+}
