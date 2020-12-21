@@ -24,8 +24,8 @@
 #define PERSONAGEM_VELOCIDADE 8
 #define PERSONAGEM_COR AZUL
 //  Inimigo
-#define INIMIGO_X 50
-#define INIMIGO_Y 50
+#define INIMIGO_X 200
+#define INIMIGO_Y 200
 #define INIMIGO_LARGURA 30
 #define INIMIGO_ALTURA 30
 #define INIMIGO_VELOCIDADE_X 2
@@ -78,7 +78,7 @@ struct tipo_bloco
     int y;
     int largura;
     int altura;
-    int destruido;
+    int vida;
 };
 typedef struct tipo_bloco Bloco;
 Bloco bloco[BLOCO_NUMERO];

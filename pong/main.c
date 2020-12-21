@@ -73,7 +73,7 @@ int main(int argc, char *args[])
         //  Desenhando blocos
         for(int i = 0; i < BLOCO_NUMERO; i++)
         {
-            if(!bloco[i].destruido)
+            if(bloco[i].vida)
             {
                 sdl2_desenhar_retangulo(tela, bloco[i].retangulo, bloco[i].x, bloco[i].y, bloco[i].largura, bloco[i].altura, BLOCO_COR);
             }

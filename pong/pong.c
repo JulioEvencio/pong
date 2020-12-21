@@ -91,6 +91,18 @@ void movimentar_inimigo(void)
     {
         inimigo.velocidade_y = -inimigo.velocidade_y;
     }
+    //  Verificando se o inimigo colidiu com um bloco
+    for(int i = 0; i < BLOCO_NUMERO; i++)
+    {
+        if(bloco[i].vida)
+        {
+            if(verificar_colisao(bloco[i].x, bloco[i].y, bloco[i].largura, bloco[i].altura))
+            {
+                inimigo.velocidade_y = -inimigo.velocidade_y;
+                bloco[i].vida = FALSO;
+            }
+        }
+    }
 }
 
 /*  Funcoes do bloco */
@@ -107,7 +119,7 @@ void resetar_bloco(void)
         bloco[i].y = y;
         bloco[i].largura = BLOCO_LARGURA;
         bloco[i].altura = BLOCO_ALTURA;
-        bloco[i].destruido = FALSO;
+        bloco[i].vida = VERDADEIRO;
     }
 }
 
