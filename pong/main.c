@@ -69,7 +69,7 @@ int main(int argc, char *args[])
 
         /*  Graficos */
         //  Definindo cor da tela
-        sdl2_definir_cor_tela(tela, JANELA_COR);
+        sdl2_limpar_tela(tela, JANELA_COR);
 
         //  Desenhando o inimigo
         sdl2_desenhar_retangulo(tela, inimigo.retangulo, inimigo.x, inimigo.y, inimigo.largura, inimigo.altura, INIMIGO_COR);
