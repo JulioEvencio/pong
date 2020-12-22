@@ -12,8 +12,11 @@
 #define JANELA_COR SDL2_CIANO
 //  Jogo
 #define JOGO_DELAY 10
+#define JOGO_FONTE "lazy.ttf"
 #define VERDADEIRO 1
 #define FALSO 0
+//  Texto
+#define TEXTO_VITORIA "Vitoria!!!!"
 //  Personagem
 #define PERSONAGEM_X 300
 #define PERSONAGEM_Y 350
@@ -54,6 +57,7 @@ struct tipo_personagem
     int largura;
     int altura;
     int velocidade;
+    int vitoria;
 };
 typedef struct tipo_personagem Personagem;
 Personagem personagem;
@@ -87,6 +91,8 @@ Bloco bloco[BLOCO_NUMERO];
 //  Janela e tela
 SDL_Window *janela = NULL;
 SDL_Renderer *tela = NULL;
+//  Fonte
+TTF_Font *fonte = NULL;
 //  Evento
 SDL_Event evento;
 

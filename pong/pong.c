@@ -46,6 +46,7 @@ void resetar_personagem(void)
     personagem.largura = PERSONAGEM_LARGURA;
     personagem.altura = PERSONAGEM_ALTURA;
     personagem.velocidade = PERSONAGEM_VELOCIDADE;
+    personagem.vitoria = BLOCO_NUMERO;
 }
 
 //  Funcao que faz o movimento do personagem
@@ -100,6 +101,7 @@ void movimentar_inimigo(void)
             {
                 inimigo.velocidade_x = -inimigo.velocidade_x;
                 bloco[i].vida = FALSO;
+                personagem.vitoria--;
                 break;
             }
         }
@@ -113,6 +115,7 @@ void movimentar_inimigo(void)
             {
                 inimigo.velocidade_y = -inimigo.velocidade_y;
                 bloco[i].vida = FALSO;
+                personagem.vitoria--;
                 break;
             }
         }
@@ -166,5 +169,11 @@ void verificar_fim_jogo(void)
     if((inimigo.y + inimigo.altura) > JANELA_ALTURA)
     {
         loop = FALSO;
+    }
+    if(personagem.vitoria == 0)
+    {
+        sdl2_exibir_texto_solid(tela, fonte, TEXTO_VITORIA, 150, 150, 300, 100, SDL2_PRETO);
+        inimigo.velocidade_x = 0;
+        inimigo.velocidade_y = 0;
     }
 }

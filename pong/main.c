@@ -35,6 +35,16 @@ int main(int argc, char *args[])
         exit(1);
     }
 
+    //  Carregando fonte
+    fonte = sdl2_carregar_fonte(JOGO_FONTE, 20);
+    if(fonte == NULL)
+    {
+        sdl2_fechar_tela(tela);
+        sdl2_fechar_janela(janela);
+        sdl2_finalizar_SDL2();
+        exit(1);
+    }
+
     //  Resetando parametros inicias do inimigo
     resetar_inimigo();
     
@@ -69,6 +79,9 @@ int main(int argc, char *args[])
         }
 
         /*  Logica */
+        //  Definindo cor da tela
+        sdl2_limpar_tela(tela, JANELA_COR);
+        
         //  Movimentando o inimigo
         movimentar_inimigo();
 
@@ -79,8 +92,6 @@ int main(int argc, char *args[])
         verificar_fim_jogo();
 
         /*  Graficos */
-        //  Definindo cor da tela
-        sdl2_limpar_tela(tela, JANELA_COR);
 
         //  Desenhando o inimigo
         sdl2_desenhar_retangulo(tela, inimigo.retangulo, inimigo.x, inimigo.y, inimigo.largura, inimigo.altura, INIMIGO_COR);
@@ -105,6 +116,8 @@ int main(int argc, char *args[])
     }
 
     /*  Finalizando programa */
+    //  Fechando fonte
+    sdl2_fechar_fonte(fonte);
     //  Fechando tela e janela
     sdl2_fechar_tela(tela);
     sdl2_fechar_janela(janela);
