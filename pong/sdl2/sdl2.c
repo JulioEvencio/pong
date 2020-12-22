@@ -7,12 +7,12 @@
 //  Funcao que iniciar: SDL, IMG e TTF
 void sdl2_iniciar_SDL2(void)
 {
-    if(SDL_Init(SDL_INIT_VIDEO) < 0)
+    if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
         printf("Erro ao iniciar SDL: %s \n", SDL_GetError());
         exit(1);
     }
-    if(IMG_Init(IMG_INIT_PNG) < 0)
+    if(IMG_Init(IMG_INIT_PNG|IMG_INIT_JPG) < 0)
     {
         SDL_Quit();
         printf("Erro ao iniciar IMG: %s \n", IMG_GetError());
@@ -43,9 +43,7 @@ SDL_Window* sdl2_criar_janela(char nome[], int largura, int altura)
     janela = SDL_CreateWindow(nome, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, largura, altura, SDL_WINDOW_SHOWN);
     if(janela == NULL)
     {
-        printf("Erro ao criar janela: %s \n", SDL_GetError());
-        sdl2_finalizar_SDL2();
-        exit(1);
+        printf("Erro ao criar janela: %s \n", SDL_GetError());;
     }
     return janela;
 }
@@ -58,14 +56,11 @@ SDL_Renderer* sdl2_criar_tela(SDL_Window *janela)
     if(tela == NULL)
     {
         printf("Erro ao criar tela: %s \n", SDL_GetError());
-        sdl2_fechar_janela(janela);
-        sdl2_finalizar_SDL2();
-        exit(1);
     }
     return tela;
 }
 
-//  Funcao que define a cor de uma tela
+//  Funcao que limpa a tela com uma cor especifica
 void sdl2_limpar_tela(SDL_Renderer *tela, int r, int g, int b)
 {
     SDL_SetRenderDrawColor(tela, r, g, b, 255);
@@ -78,18 +73,18 @@ void sdl2_atualizar_tela(SDL_Renderer *tela)
     SDL_RenderPresent(tela);
 }
 
-//  Funcao que libera memoria de uma janela
-void sdl2_fechar_janela(SDL_Window *janela)
-{
-    SDL_DestroyWindow(janela);
-    janela = NULL;
-}
-
 //  Funcao que libera memoria de uma tela
 void sdl2_fechar_tela(SDL_Renderer *tela)
 {
     SDL_DestroyRenderer(tela);
     tela = NULL;
+}
+
+//  Funcao que libera memoria de uma janela
+void sdl2_fechar_janela(SDL_Window *janela)
+{
+    SDL_DestroyWindow(janela);
+    janela = NULL;
 }
 
 /*  Funcoes de desenhos geometricos */
@@ -104,8 +99,8 @@ void sdl2_desenhar_retangulo(SDL_Renderer *tela, SDL_Rect retangulo, int x, int 
     SDL_RenderFillRect(tela, &retangulo);
 }
 
-/*  Funcoes de arquivos .png */
-//  Funcao que carrega uma imagem .png e transforma em uma textura usavel
+/*  Funcoes de arquivos .png e .jpg */
+//  Funcao que carrega uma imagem .png/.jpg e transforma em uma textura usavel
 SDL_Texture* sdl2_carregar_textura(SDL_Renderer *tela, char arquivo[])
 {
     SDL_Surface *imagem = NULL;
@@ -119,8 +114,7 @@ SDL_Texture* sdl2_carregar_textura(SDL_Renderer *tela, char arquivo[])
     textura = SDL_CreateTextureFromSurface(tela, imagem);
     if(textura == NULL)
     {
-        printf("Erro ao criar textura \n");
-        return textura;
+        printf("Erro ao criar textura: %s \n", SDL_GetError());
     }
     SDL_FreeSurface(imagem);
     imagem = NULL;
@@ -132,6 +126,13 @@ void sdl2_desenhar_textura(SDL_Renderer *tela, SDL_Texture *textura, int x, int 
 {
     SDL_Rect desenho = {x, y, largura, altura};
     SDL_RenderCopy(tela, textura, NULL, &desenho);
+}
+
+//  Funcao que libera memoria de uma textura
+void sdl2_fechar_textura(SDL_Texture *textura)
+{
+    SDL_DestroyTexture(textura);
+    textura = NULL;
 }
 
 /*  Funcoes TTF */
@@ -156,21 +157,22 @@ int sdl2_exibir_texto_solid(SDL_Renderer *tela, TTF_Font *fonte, char mensagem[]
     texto = TTF_RenderText_Solid(fonte, mensagem, fonte_cor);
     if(texto == NULL)
     {
-        printf("erro ao gerar mensagem \n");
-        return -1;
+        printf("erro ao gerar mensagem: %s \n", TTF_GetError());
+        return 0;
     }
     texto_textura = SDL_CreateTextureFromSurface(tela, texto);
     if(texto_textura == NULL)
     {
         SDL_FreeSurface(texto);
         texto = NULL;
-        printf("Erro ao gerar textura para texto \n");
-        return -1;
+        printf("Erro ao gerar textura para texto: %s \n", SDL_GetError());
+        return 0;
     }
     SDL_Rect desenho = {x, y, largura, altura};
     SDL_RenderCopy(tela, texto_textura, NULL, &desenho);
     SDL_FreeSurface(texto);
     texto = NULL;
+    sdl2_fechar_textura(texto_textura);
     return 1;
 }
 
@@ -184,21 +186,22 @@ int sdl2_exibir_texto_shaded(SDL_Renderer *tela, TTF_Font *fonte, char mensagem[
     texto = TTF_RenderText_Shaded(fonte, mensagem, fonte_cor, fonte_fundo);
     if(texto == NULL)
     {
-        printf("erro ao gerar mensagem \n");
-        return -1;
+        printf("erro ao gerar mensagem: %s \n", TTF_GetError());
+        return 0;
     }
     texto_textura = SDL_CreateTextureFromSurface(tela, texto);
     if(texto_textura == NULL)
     {
         SDL_FreeSurface(texto);
         texto = NULL;
-        printf("Erro ao gerar textura para texto \n");
-        return -1;
+        printf("Erro ao gerar textura para texto: %s \n", SDL_GetError());
+        return 0;
     }
     SDL_Rect desenho = {x, y, largura, altura};
     SDL_RenderCopy(tela, texto_textura, NULL, &desenho);
     SDL_FreeSurface(texto);
     texto = NULL;
+    sdl2_fechar_textura(texto_textura);
     return 1;
 }
 
@@ -211,21 +214,22 @@ int sdl2_exibir_texto_blended(SDL_Renderer *tela, TTF_Font *fonte, char mensagem
     texto = TTF_RenderText_Blended(fonte, mensagem, fonte_cor);
     if(texto == NULL)
     {
-        printf("erro ao gerar mensagem \n");
-        return -1;
+        printf("erro ao gerar mensagem: %s \n", TTF_GetError());
+        return 0;
     }
     texto_textura = SDL_CreateTextureFromSurface(tela, texto);
     if(texto_textura == NULL)
     {
         SDL_FreeSurface(texto);
         texto = NULL;
-        printf("Erro ao gerar textura para texto \n");
-        return -1;
+        printf("Erro ao gerar textura para texto: %s \n", SDL_GetError());
+        return 0;
     }
     SDL_Rect desenho = {x, y, largura, altura};
     SDL_RenderCopy(tela, texto_textura, NULL, &desenho);
     SDL_FreeSurface(texto);
     texto = NULL;
+    sdl2_fechar_textura(texto_textura);
     return 1;
 }
 
