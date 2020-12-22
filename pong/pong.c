@@ -125,12 +125,12 @@ void movimentar_inimigo(void)
 /*  Funcoes do bloco */
 void resetar_bloco(void)
 {
-    for(int i = 0, x = BLOCO_X, y = BLOCO_Y; i < BLOCO_NUMERO; i++, x += 66)
+    for(int i = 0, x = BLOCO_X, y = BLOCO_Y; i < BLOCO_NUMERO; i++, x += BLOCO_DISTANCIA_X)
     {
-        if(x > 560)
+        if(x > BLOCO_DISTANCIA_LIMITE)
         {
             x = BLOCO_X;
-            y += 23;
+            y += BLOCO_DISTANCIA_Y;
         }
         bloco[i].x = x;
         bloco[i].y = y;
@@ -172,8 +172,8 @@ void verificar_fim_jogo(void)
     }
     if(personagem.vitoria == 0)
     {
-        sdl2_exibir_texto_solid(tela, fonte, TEXTO_VITORIA, 150, 150, 300, 100, SDL2_PRETO);
-        inimigo.velocidade_x = 0;
-        inimigo.velocidade_y = 0;
+        sdl2_exibir_texto_solid(tela, fonte, TEXTO_VITORIA, TEXTO_VITORIA_X, TEXTO_VITORIA_Y, TEXTO_VITORIA_LARGURA, TEXTO_VITORIA_ALTURA, SDL2_PRETO);
+        inimigo.velocidade_x = FALSO;
+        inimigo.velocidade_y = FALSO;
     }
 }

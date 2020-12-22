@@ -36,7 +36,7 @@ int main(int argc, char *args[])
     }
 
     //  Carregando fonte
-    fonte = sdl2_carregar_fonte(JOGO_FONTE, 20);
+    fonte = sdl2_carregar_fonte(JOGO_FONTE, JOGO_FONTE_TAMANHO);
     if(fonte == NULL)
     {
         sdl2_fechar_tela(tela);
@@ -81,7 +81,7 @@ int main(int argc, char *args[])
         /*  Logica */
         //  Definindo cor da tela
         sdl2_limpar_tela(tela, JANELA_COR);
-        
+
         //  Movimentando o inimigo
         movimentar_inimigo();
 

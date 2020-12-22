@@ -13,10 +13,15 @@
 //  Jogo
 #define JOGO_DELAY 10
 #define JOGO_FONTE "lazy.ttf"
+#define JOGO_FONTE_TAMANHO 20
 #define VERDADEIRO 1
 #define FALSO 0
 //  Texto
 #define TEXTO_VITORIA "Vitoria!!!!"
+#define TEXTO_VITORIA_X 150
+#define TEXTO_VITORIA_Y 150
+#define TEXTO_VITORIA_LARGURA 300
+#define TEXTO_VITORIA_ALTURA 100
 //  Personagem
 #define PERSONAGEM_X 300
 #define PERSONAGEM_Y 350
@@ -40,6 +45,9 @@
 #define BLOCO_Y 10
 #define BLOCO_LARGURA 60
 #define BLOCO_ALTURA 20
+#define BLOCO_DISTANCIA_X 66
+#define BLOCO_DISTANCIA_Y 23
+#define BLOCO_DISTANCIA_LIMITE 560
 #define BLOCO_COR SDL2_MARROM
 
 /*  Variaveis */
