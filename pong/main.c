@@ -20,9 +20,20 @@ int main(int argc, char *args[])
 
     //  Criando janela
     janela = sdl2_criar_janela(JANELA_NOME, JANELA_LARGURA, JANELA_ALTURA);
+    if(janela == NULL)
+    {
+        sdl2_finalizar_SDL2();
+        exit(1);
+    }
 
     //  Criando tela
     tela = sdl2_criar_tela(janela);
+    if(tela == NULL)
+    {
+        sdl2_fechar_janela(janela);
+        sdl2_finalizar_SDL2();
+        exit(1);
+    }
 
     //  Resetando parametros inicias do inimigo
     resetar_inimigo();
