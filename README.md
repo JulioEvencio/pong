@@ -13,5 +13,3 @@
 **Imagem 3:**
 
 ![Captura de tela de 2020-12-21 01-41-34](https://user-images.githubusercontent.com/65574850/102740339-4a5b8300-432e-11eb-9db0-ff3ebabcc9fd.png)
-
-Em desenvolvimento...
